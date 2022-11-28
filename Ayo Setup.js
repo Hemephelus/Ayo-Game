@@ -40,7 +40,7 @@ class AyoBids {
   DrawBoard() {
     fill(198, 100, 0);
     rect(75, 150, 450, 70, 90);
-    rect(75, 220, 450, 70, 90);
+    rect(75, height/2, 450, 70, 90);
   }
     
   

@@ -1,4 +1,4 @@
-let BidsPerPot = [4,4,4,4,4,4,4,4,4,4,4,4];
+let BidsPerPot =[4,4];
 let BoardInfo = [];
 let StartingPosition = 2;
 let StartingValue = BidsPerPot[StartingPosition];
@@ -9,7 +9,9 @@ let i = 0;
 let Ayo;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let cnv =  createCanvas(windowWidth, windowHeight);
+  cnv.position(0, 0);
+  cnv.style('z-index', -1);
   MakeObject(BidsPerPot);
 }
 
@@ -44,12 +46,10 @@ function draw() {
   //MakeObject(BidsPerPot)
   frameRate(1);
   background(28);
-  Ayo.DrawBoard();
-  Ayo.DrawPots();
 
     for(let Ayo of BoardInfo){
 
-        Ayo.DrawBids(BidsPerPot)
+        // Ayo.DrawBids(BidsPerPot)
     }
 noLoop()
   //MoveBids(BidsPerPot, StartingPosition, StartingValue, RestPot);
