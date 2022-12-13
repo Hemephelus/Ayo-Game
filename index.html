@@ -7,7 +7,14 @@
     <title>Sketch</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
-
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,18 +24,42 @@
           @apply bg-[#C66400] w-[450px] h-[70px] rounded-full flex justify-evenly items-center border-solid border border-black;
         }
 
+        .Side.one > .pot{
+          @apply bg-[#B23A48] flex-row-reverse;
+        }
+        .Side.one{
+          @apply flex-row-reverse;
+        }
         .pot {
-          @apply bg-[#9E5000] w-[55px] h-[55px] rounded-full border-solid border border-black flex justify-center items-center text-3xl font-semibold  text-slate-300 hover:bg-[#EDA958]  hover:text-[#000] cursor-pointer;
+          @apply bg-[#9E5000] w-[55px] h-[55px] rounded-full border-solid border border-black flex justify-center items-center text-3xl font-semibold  text-slate-300 hover:bg-[#B23A48]  hover:text-[#6E44FF] cursor-pointer;
+        }
+
+
+        .Side.two > .pot{
+          @apply bg-[#6E44FF]
+        }
+
+        .controls{
+          @apply flex gap-8 bg-slate-100  rounded-xl p-8 w-[100%] justify-center items-center;
+        }
+        .controls>button>span{
+          @apply flex bg-red-100  rounded-full p-2 justify-center items-center hover:bg-black hover:text-red-100 active:scale-90;
+        }
+        .main_stats{
+          @apply flex flex-col gap-8 w-[100%] text-xl font-semibold bg-slate-100  rounded-xl p-8;
         }
       }
     </style>
   </head>
 
-  <body class="p-8 h-screen">
-    <h1 class="text-3xl font-bold underline">The Ayo Game</h1>
-    <div class="grid grid-cols-2 gap-4 h-[100%] m-8">
-      <div class= "rounded-xl flex justify-center p-8">
+  <body class="p-4 h-screen bg-[#0F172A]">
+    <!-- <h1 class="text-3xl font-bold underline">The Ayo Game</h1> -->
+    <div class="grid grid-cols-2 gap-4 m-4">
+      <!-- Ayo Section -->
+      <div class="rounded-xl flex justify-center  items-center p-8">
+        <!-- The Ayo Board -->
         <div class="Board">
+          <!-- Top side of the ayo board -->
           <div class="Side one">
             <div class="pot">4</div>
             <div class="pot">4</div>
@@ -37,6 +68,7 @@
             <div class="pot">4</div>
             <div class="pot">4</div>
           </div>
+          <!-- Bottom side of the ayo board -->
           <div class="Side two">
             <div class="pot">4</div>
             <div class="pot">4</div>
@@ -47,9 +79,55 @@
           </div>
         </div>
       </div>
-      <div class="Stat bg-slate-100 rounded-xl">
-        <!-- Stat -->
-        hi
+      <!-- Ayo Board stats and details -->
+      <div class="Stat w-[500px] flex flex-col justify-center items-center p-8 gap-4">
+                <!-- control panel -->
+      <div class="controls ">
+        <button title="skip_previous">
+          <span class="material-symbols-outlined"> skip_previous </span>
+        </button>
+        <button title="skip_next">
+          <span class="material-symbols-outlined"> skip_next </span>
+        </button>
+        <button title="stop">
+          <span class="material-symbols-outlined"> stop </span>
+        </button>
+        <button title="play_arrow">
+          <span class="material-symbols-outlined"> play_arrow </span>
+        </button>
+        <button title="pause">
+          <span class="material-symbols-outlined"> pause </span>
+        </button>
+        <button title="fast_forward">
+          <span class="material-symbols-outlined"> fast_forward </span>
+        </button>
+      </div>
+      
+      
+        <div class="main_stats">
+          <div class="player one">
+            <p>Player 1</p>
+            <div class="score">Score: <span>0</span></div>
+            <div class="times_played">Times Played: <span>0</span></div>
+            <div class="lastest_starting_position">Latest Starting Position: <span>0</span></div>
+            <div class="latest_ending_position">Latest Ending Position: <span>0</span></div>
+          </div>
+          <div class="player two">
+            <p>Player 2</p>
+            <div class="score">Score: <span>0</span></div>
+            <div class="times_played">Times Played: <span>0</span></div>
+            <div class="lastest_starting_position">Latest Starting Position: <span>0</span></div>
+            <div class="latest_ending_position">Latest Ending Position: <span>0</span></div>
+          </div>
+          <div class="general" >
+            <div class="sessions">Sessions: <span>0</span></div>
+            <div class="current_player">Current Player: <span>0</span></div>
+            <div class="current_player">Winning Player: <span>None</span></div>
+            <div class="current_player">Losing Player: <span>None</span></div>
+          </div>
+        </div>
+
+        
       </div>
     </div>
 

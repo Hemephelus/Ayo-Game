@@ -1,4 +1,4 @@
-let BidsPerPot =[4,4];
+let BidsPerPot = [4, 4];
 let BoardInfo = [];
 let StartingPosition = 2;
 let StartingValue = BidsPerPot[StartingPosition];
@@ -7,13 +7,111 @@ let Player1Pt = 0;
 let Player2Pt = 0;
 let i = 0;
 let Ayo;
+let sideDiv = [".Side.one > .pot", ".Side.two > .pot"];
+frameR = 1;
+let ayoBoard = [
+  [4, 4, 4, 4, 4, 4],
+  [4, 4, 4, 4, 4, 4],
+];
+let a= [0,0]
+let gameStatesHistory = [ayoBoard]
 
 function setup() {
-  let cnv =  createCanvas(windowWidth, windowHeight);
+  let cnv = createCanvas(windowWidth, windowHeight);
   cnv.position(0, 0);
-  cnv.style('z-index', -1);
+  cnv.style("z-index", -1);
   MakeObject(BidsPerPot);
+  selectStartingPosition()
 }
+
+function selectStartingPosition() {
+  for (let i = 0; i < 2; i++) {
+    let Pots = selectAll(sideDiv[i]);
+
+    for (let j = 0; j < Pots.length; j++) {
+      Pots[j].mousePressed(function () {
+       let startingPosition = [i, j] ;
+       let startingValue = ayoBoard[i][j]
+       playGame(startingPosition,startingValue)
+       b++
+      });
+    }
+  }
+}
+
+function playGame(startingPosition,startingValue){
+  for(let i = 0; i < startingValue; i++ ){
+    tempAyoBoard = JSON.parse(JSON.stringify(gameStatesHistory[gameStatesHistory.length-1]));
+    tempAyoBoard[0][i+1] += 1
+    gameStatesHistory.push(tempAyoBoard)
+  }
+}
+a = 0
+b = 0
+
+function draw() {
+  //MakeObject(BidsPerPot)
+  frameRate(frameR);
+  // background(28);
+  
+  console.log(gameStatesHistory[a])
+  for (let i = 0; i < gameStatesHistory[a].length; i++) {
+    let btns = selectAll(sideDiv[i]);
+    for (let j = 0; j < gameStatesHistory[a][i].length; j++) {
+      btns[j].elt.innerText = gameStatesHistory[a][i][j];
+    }
+  }
+
+  if(b > 0 && b < 4){
+    a++
+  }else{
+    noLoop
+  }
+ 
+  // frameR++
+}
+
+// function getall
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function MakeObject(BidsPerPot) {
   fill(196);
@@ -42,18 +140,21 @@ function MakeObject(BidsPerPot) {
   }
 }
 
-function draw() {
-  //MakeObject(BidsPerPot)
-  frameRate(1);
-  background(28);
 
-    for(let Ayo of BoardInfo){
 
-        // Ayo.DrawBids(BidsPerPot)
-    }
-noLoop()
-  //MoveBids(BidsPerPot, StartingPosition, StartingValue, RestPot);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function MoveBids(BidsPerPot, StartingPosition, StartingValue, RestPot) {
   if (StartingValue != 0) {
@@ -62,7 +163,6 @@ function MoveBids(BidsPerPot, StartingPosition, StartingValue, RestPot) {
       StartingPosition < RestPot;
       StartingPosition++
     ) {
-
       BoardInfo.pop();
       BidsPerPot[(StartingPosition + 1) % 12] =
         BidsPerPot[(StartingPosition + 1) % 12] + 1;
