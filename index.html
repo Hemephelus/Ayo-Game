@@ -48,6 +48,9 @@
         .main_stats{
           @apply flex flex-col gap-8 w-[100%] text-xl font-semibold bg-slate-100  rounded-xl p-8;
         }
+        .current_style{
+          @apply  bg-slate-300 p-4 rounded-lg;
+        }
       }
     </style>
   </head>
@@ -83,47 +86,45 @@
       <div class="Stat w-[500px] flex flex-col justify-center items-center p-8 gap-4">
                 <!-- control panel -->
       <div class="controls ">
-        <button title="skip_previous">
+        <button title="skip_previous" id="skip_previous">
           <span class="material-symbols-outlined"> skip_previous </span>
         </button>
-        <button title="skip_next">
+        <button title="skip_next" id="skip_next">
           <span class="material-symbols-outlined"> skip_next </span>
         </button>
-        <button title="stop">
-          <span class="material-symbols-outlined"> stop </span>
+        <button title="reset" id="reset">
+          <span class="material-symbols-outlined"> refresh </span>
         </button>
-        <button title="play_arrow">
+        <button title="play_arrow" id="play_arrow">
           <span class="material-symbols-outlined"> play_arrow </span>
         </button>
-        <button title="pause">
+        <button title="pause" id="pause">
           <span class="material-symbols-outlined"> pause </span>
         </button>
-        <button title="fast_forward">
+        <button title="fast_forward" id="fast_forward">
           <span class="material-symbols-outlined"> fast_forward </span>
         </button>
       </div>
       
       
         <div class="main_stats">
-          <div class="player one">
+          <div class="player one current_style">
             <p>Player 1</p>
             <div class="score">Score: <span>0</span></div>
             <div class="times_played">Times Played: <span>0</span></div>
-            <div class="lastest_starting_position">Latest Starting Position: <span>0</span></div>
-            <div class="latest_ending_position">Latest Ending Position: <span>0</span></div>
           </div>
           <div class="player two">
             <p>Player 2</p>
             <div class="score">Score: <span>0</span></div>
             <div class="times_played">Times Played: <span>0</span></div>
-            <div class="lastest_starting_position">Latest Starting Position: <span>0</span></div>
-            <div class="latest_ending_position">Latest Ending Position: <span>0</span></div>
+            
           </div>
           <div class="general" >
-            <div class="sessions">Sessions: <span>0</span></div>
+            <div class="game_state">Game State: <span>0</span></div>
             <div class="current_player">Current Player: <span>0</span></div>
-            <div class="current_player">Winning Player: <span>None</span></div>
-            <div class="current_player">Losing Player: <span>None</span></div>
+            <div class="starting_position">Starting Position: <span>0</span></div>
+            <div class="winning_player">Winning Player: <span>None</span></div>
+            <div class="losing_player">Losing Player: <span>None</span></div>
           </div>
         </div>
 
