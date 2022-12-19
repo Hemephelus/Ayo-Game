@@ -1,10 +1,3 @@
-// let StartingPosition = 2;
-// let StartingValue = BidsPerPot[StartingPosition];
-// let RestPot = StartingPosition + StartingValue;
-// let Player1Pt = 0;
-// let Player2Pt = 0;
-// let i = 0;
-// let Ayo;
 let sideDiv = [".Side.one > .pot", ".Side.two > .pot"];
 frameR = 1;
 let pauseGame = false;
@@ -23,7 +16,10 @@ let gameState = {
   'playerScore1': 0,
   'currentPlayer' : 1,
   'startingPosition' : 1,
+  'timesPlayed1': 0,
+  'timesPlayed2': 0,
 };
+
 let gameStatesHistory = [gameState];
 
 function setup() {
@@ -48,13 +44,8 @@ function draw() {
       btns[j].elt.innerText = currentBoardState[i][j];
     }
   }
-  let currentPlayerNum = gameStatesHistory[a]['currentPlayer']
-  select(".game_state>span").elt.innerText = a;
-  select(".current_player>span").elt.innerText = currentPlayerNum;
-  select(`.player.${W2N[currentPlayerNum]}`).addClass('current_style')
-  select(`.player.${W2N[(currentPlayerNum%2)+1]}`).removeClass('current_style')
-  select('.player.one .score >span').elt.innerText = gameStatesHistory[a]['playerScore0']
-  select('.player.two .score >span').elt.innerText = gameStatesHistory[a]['playerScore1']
+
+  renderStats()
   
   if (selectedPot > 0 && a < gameStatesHistory.length - 1 && playGame === true) {
     a++;
@@ -62,6 +53,7 @@ function draw() {
     noLoop();
   }
 }
+
 
 /**
  *

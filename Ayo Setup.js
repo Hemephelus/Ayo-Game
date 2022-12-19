@@ -5,10 +5,18 @@ function selectStartingPosition() {
     for (let j = 0; j < Pots.length; j++) {
       Pots[j].mousePressed(function () {
         let startingPosition = [i, j];
+
+        gameStatesHistory[gameStatesHistory.length - 1]['startingPosition'] = startingPosition[1];
         let startingValue =
           gameStatesHistory[gameStatesHistory.length - 1]['ayoBoard'][i][j];
         let stopPosition = startingPosition[1] + startingValue;
         gameStatesHistory[gameStatesHistory.length - 1]['currentPlayer'] = (selectedPot%2)+1
+        if(selectedPot%2 === 1){
+          gameStatesHistory[gameStatesHistory.length - 1]['timesPlayed2']++
+        }else{
+          gameStatesHistory[gameStatesHistory.length - 1]['timesPlayed1']++
+          
+        }
         selectedPot++
         playAyoGameSession(startingPosition, startingValue, stopPosition);
       });
@@ -23,10 +31,9 @@ function playAyoGameSession(startingPosition, startingValue, stopPosition){
   let [side,pot]= startingPosition
   startingValue = latestGameState['ayoBoard'][side][pot]
   stopPosition = pot+startingValue
-
+  
   while(startingValue > 1){
     latestGameState = gameStatesHistory[gameStatesHistory.length-1]
-    // console.log(latestGameState)
     startingPosition= playAyoGame(startingPosition, stopPosition,latestGameState)
     latestGameState = gameStatesHistory[gameStatesHistory.length-1]
     let [side,pot]= startingPosition
@@ -54,6 +61,10 @@ function playAyoGame(startingPosition, stopPosition,latestGameState) {
         
         gameStatesHistory.push(tempAyoState);
         if(tempAyoState['ayoBoard'][side][currentPot] === 4){
+
+          if(true){
+
+          }
           latestGameState = gameStatesHistory[gameStatesHistory.length-1]
           tempAyoState = JSON.parse(
             JSON.stringify(latestGameState)
@@ -63,10 +74,10 @@ function playAyoGame(startingPosition, stopPosition,latestGameState) {
             gameStatesHistory.push(tempAyoState);
           }
           
-
-
   }
 
+
+console.log(tempAyoState)
   return [side, currentPot]
 }
 
@@ -82,13 +93,12 @@ function Control_Buttons() {
       noLoop();
     }
   });
-
+  
+  // Reset Button
   select("#reset").mousePressed(function () {
     resetGame = true;
     if (resetGame) {
       pauseGame = true;
-
-      // playGame = false;
       a = 0;
       selectedPot = 0;
       loop();
@@ -110,7 +120,7 @@ function Control_Buttons() {
   select("#fast_forward").mousePressed(function () {
     fastForwardGame = true;
     if (playGame) {
-      frameR = 10;
+      frameR += 4;
       loop();
     }
   });
@@ -136,4 +146,29 @@ function Control_Buttons() {
     }
     noLoop();
   });
+}
+
+// Renders the stats values on the page.
+function renderStats(){
+  let currentPlayerNum = gameStatesHistory[a]['currentPlayer']
+  select(".game_state>span").elt.innerText = a;
+  select(".current_player>span").elt.innerText = currentPlayerNum;
+  select(`.player.${W2N[currentPlayerNum]}`).addClass('current_style')
+  select(`.player.${W2N[(currentPlayerNum%2)+1]}`).removeClass('current_style')
+  select('.player.one .score >span').elt.innerText = gameStatesHistory[a]['playerScore0']
+  select('.player.two .score >span').elt.innerText = gameStatesHistory[a]['playerScore1']
+  select('.player.one .times_played >span').elt.innerText = gameStatesHistory[a]['timesPlayed1']
+  select('.player.two .times_played >span').elt.innerText = gameStatesHistory[a]['timesPlayed2']
+
+  if(gameStatesHistory[a]['playerScore0'] > gameStatesHistory[a]['playerScore1']){
+    select('.winning_player >span').elt.innerText = 'Player 1'
+    select('.losing_player >span').elt.innerText = 'Player 2'
+  }else if(gameStatesHistory[a]['playerScore0'] < gameStatesHistory[a]['playerScore1']){
+    select('.winning_player >span').elt.innerText = 'Player 2'
+    select('.losing_player >span').elt.innerText = 'Player 1'
+  }else{
+    select('.winning_player >span').elt.innerText = 'None'
+    select('.losing_player >span').elt.innerText = 'None'
+
+  }
 }
