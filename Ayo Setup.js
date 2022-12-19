@@ -62,9 +62,28 @@ function playAyoGame(startingPosition, stopPosition,latestGameState) {
         gameStatesHistory.push(tempAyoState);
         if(tempAyoState['ayoBoard'][side][currentPot] === 4){
 
-          if(true){
-
+          if(tempAyoState['currentPlayer'] === 2 && side === 0 && i === stopPosition-1){
+            latestGameState = gameStatesHistory[gameStatesHistory.length-1]
+            tempAyoState = JSON.parse(
+              JSON.stringify(latestGameState)
+              );
+              tempAyoState['ayoBoard'][side][currentPot] = 0;
+              tempAyoState['playerScore1'] += 4
+              gameStatesHistory.push(tempAyoState);
+            continue
           }
+
+          if(tempAyoState['currentPlayer'] === 1 && side === 1 && i === stopPosition-1){
+            latestGameState = gameStatesHistory[gameStatesHistory.length-1]
+            tempAyoState = JSON.parse(
+              JSON.stringify(latestGameState)
+              );
+              tempAyoState['ayoBoard'][side][currentPot] = 0;
+              tempAyoState['playerScore0'] += 4
+              gameStatesHistory.push(tempAyoState);
+            continue
+          }
+
           latestGameState = gameStatesHistory[gameStatesHistory.length-1]
           tempAyoState = JSON.parse(
             JSON.stringify(latestGameState)
@@ -167,8 +186,8 @@ function renderStats(){
     select('.winning_player >span').elt.innerText = 'Player 2'
     select('.losing_player >span').elt.innerText = 'Player 1'
   }else{
-    select('.winning_player >span').elt.innerText = 'None'
-    select('.losing_player >span').elt.innerText = 'None'
+    select('.winning_player >span').elt.innerText = 'Draw'
+    select('.losing_player >span').elt.innerText = 'Draw'
 
   }
 }
