@@ -125,8 +125,8 @@ def play_game(game_state):
 
 def best_move(origin_game_state):
     all_game_state = []
-    max_dept1 = 11
-    max_dept2 = 11
+    max_dept1 = 7
+    max_dept2 = 7
 
     all_game_state.append(origin_game_state)
     
@@ -306,7 +306,7 @@ def play_ayo():
 
 play_ayo()
 
-[0, 6, 5, 11, 2, 7, 0]
+
 #  11 = [0, 6, 5, 11, 1, 6, 0, 6, 3, 6, 2, 6, 0, 8, 1, 9, 0, 10]
 #  10 = [0, 6, 5, 10, 2, 10, 2, 7, 0, 8, 2, 6, 0, 6, 0, 6, 2, 6]
 #  9 = [0, 6, 5, 10, 2, 8, 4, 6, 0, 8, 0, 6, 1, 6, 2, 7, 0, 9, 1, 10, 0, 7, 2, 8, 3]
