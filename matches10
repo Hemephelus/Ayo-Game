@@ -1,0 +1,5 @@
+,player_1_name,player_2_name,player_1_wins,player_2_wins,ties,player_1_elo,player_2_elo
+0,random_agent,minimax_agent_dept_3,0.0,100.0,0.0,854.6446405754193,1456.8013407683095
+1,random_agent,minimax_agent_dept_6,0.0,100.0,0.0,844.386064104137,1362.4005205616506
+2,random_agent,minimax_agent_dept_9,0.0,100.0,0.0,844.1862265699049,2044.3735197945332
+3,random_agent,mcts_agent_10,20.0,40.0,40.0,844.8237311802793,948.3630050820155
