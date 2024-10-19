@@ -1,3 +1,4 @@
+- [ ] Clean up code
 - [ ] Create A model
   - [ ] make policy model
   - [ ] make value model

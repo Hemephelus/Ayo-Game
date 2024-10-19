@@ -1,9 +1,7 @@
 import copy
-import random
-from json.encoder import INFINITY
-import pandas as pd
-import math
 
+def end_game(state):
+    return sum(state['board']) == 0
 
 def assign_reward(reward, new_reward):
     return [reward[0] + new_reward[0], reward[1] + new_reward[1], new_reward[2]]
