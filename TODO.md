@@ -1,0 +1,7 @@
+- [ ] Create A model
+  - [ ] make policy model
+  - [ ] make value model
+- [ ] convert model to agent
+- [ ] integrate model into mcts
+- [ ] do a match up
+- [ ] expandability
