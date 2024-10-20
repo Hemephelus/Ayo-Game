@@ -4,10 +4,10 @@ from json.encoder import INFINITY
 import math
 from ayo_game import play, is_illegal_move, assign_reward, print_game_play, end_game
 from agents import random_agent as ra
-from agents import get_valid_actions_mct
+from agents import random_agent
 
 seed = 37
-
+get_valid_actions_mct = random_agent.get_valid_actions_mct
 randint = random.randint
 random.seed(seed)
 random_agent = ra.agent
