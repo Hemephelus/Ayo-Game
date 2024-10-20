@@ -3,7 +3,7 @@ from json.encoder import INFINITY
 from ayo_game import play, assign_reward, end_game
 
 
-def agent(state, arg):
+def get_action_value(state, arg):
     max_dept = arg['max_dept']
     reward = [0,0,0]
     all_game_state = []
@@ -36,7 +36,7 @@ def agent(state, arg):
             if score < best_score:
                 best_score = score
                 move = action
-    return move
+    return (move, best_score)
 
 
 
@@ -81,3 +81,8 @@ def minimax(game_state, is_maximizing,all_game_state,reward,max_dept,alpha,beta 
                 break
 
         return best_score
+
+
+def agent(state, arg):
+    move, best_score = get_action_value(state, arg)
+    return move
