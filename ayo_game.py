@@ -115,7 +115,7 @@ def session(state, starting_position,latest_winner ):
 
 def play(state, action, show=False):
     reward = [0,0,0]
-    max_rez = 100
+    max_rez = 50
     rez = 0
     # print(is_illegal_move(state, action))
     if is_illegal_move(state, action):
